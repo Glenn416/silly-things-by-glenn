@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For The ONE and Only🌸</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #c685c0, #e18eab);
+    font-family: 'Nunito', sans-serif;
+    overflow: hidden;
+  }
+
+  .btn {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 22px;
+    border-radius: 25px;
+    border: none;
+    background: #9bbcff;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .window {
+    position: absolute;
+    width: 240px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: pop 0.3s ease;
+  }
+
+  .header {
+    padding: 8px 12px;
+    background: #9bbcff;
+    color: white;
+    border-radius: 16px 16px 0 0;
+    cursor: grab;
+    font-size: 13px;
+  }
+
+  .content {
+    padding: 15px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  @keyframes pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+</style>
+</head>
+<img src="https://cdn.pixabay.com/animation/2023/07/02/16/21/16-21-18-411_512.gif" 
+alt="gif" 
+style="position: fixed; top: 45%; left: 50%; transform: translateX(-50%); width: 150px;">
+<body>
+
+<button class="btn" onclick="createWindow()">Click me</button>
+
+<script>
+ const messages = [
+  "No matter what happens, I care about you.",
+  "I’m here for you, always.",
+  "Even on hard days, you matter to me.",
+  "You don’t have to earn my care.",
+  "I care about you just as you are.",
+
+  "No matter how today goes, I’m on your side.",
+  "Even if things feel messy, I still care.",
+  "Good days or bad ones, you’re not alone.",
+  "You don’t need to be okay for me to care.",
+  "I’m here, quietly, no matter what.",
+
+  "Even when there’s nothing to say, I care.",
+  "If today feels heavy, I’m still here.",
+  "You don’t have to explain yourself.",
+  "I’ll stay, even when it’s hard.",
+  "No matter what changes, my care doesn’t.",
+
+  "I care about you without conditions.",
+  "You’re allowed to have bad days.",
+  "My care doesn’t disappear when things get tough.",
+  "I care about you in every season.",
+  "You matter to me more than you know.",
+
+  "Even if today didn’t go well, I still care.",
+  "You don’t lose my care on tired days.",
+  "I’m on your side, even quietly.",
+  "You don’t have to be strong for me.",
+  "My care isn’t going anywhere.",
+
+  "No matter what mood you’re in, I care.",
+  "You’re not a burden to me.",
+  "I care about you, even when you’re unsure.",
+  "You don’t have to prove anything.",
+  "I’m here, steady and patient.",
+
+  "Even if things feel unclear, I care.",
+  "My care doesn’t depend on outcomes.",
+  "You matter to me, even on ordinary days.",
+  "I care about you when things are calm or chaotic.",
+  "You don’t have to rush anything.",
+
+  "No matter how long it takes, I care.",
+  "I’m not going anywhere.",
+  "My care stays, even in silence.",
+  "You don’t need permission to be yourself.",
+  "I care about you through ups and downs.",
+
+  "Even when you doubt yourself, I care.",
+  "You’re allowed to rest.",
+  "My care doesn’t come with expectations.",
+  "I care about you without needing reasons.",
+  "You’re safe with my care.",
+
+  "No matter how today ends, I care.",
+  "I care about you on your best days and worst days.",
+  "You don’t have to have answers.",
+  "My care is steady, not loud.",
+  "I’m here, even when words are few.",
+
+  "You matter to me, full stop.",
+  "My care doesn’t fade with time.",
+  "I care about you, even when things change.",
+  "You don’t have to be perfect.",
+  "I care about you beyond circumstances.",
+
+  "No matter what you’re feeling, I care.",
+  "I’m here with patience.",
+  "My care isn’t fragile.",
+  "You don’t need to hide from me.",
+  "I care about you, simply and honestly.",
+
+  "Even when life feels overwhelming, I care.",
+  "My care stays constant.",
+  "You’re not alone in this.",
+  "I care about you, no matter what kind of day this is.",
+  "I’ll still care tomorrow."
+];
+
+function createWindow() {
+  const win = document.createElement("div");
+  win.className = "window";
+  win.style.left = Math.random() * 60 + 20 + "vw";
+  win.style.top = Math.random() * 60 + 20 + "vh";
+
+  win.innerHTML = `
+    <div class="header">🌸 Message</div>
+    <div class="content">
+      ${messages[Math.floor(Math.random() * messages.length)]}
+    </div>
+  `;
+
+  document.body.appendChild(win);
+  makeDraggable(win);
+}
+
+function makeDraggable(win) {
+  const header = win.querySelector(".header");
+  let offsetX = 0;
+  let offsetY = 0;
+
+  header.addEventListener("mousedown", (e) => {
+    offsetX = e.clientX - win.offsetLeft;
+    offsetY = e.clientY - win.offsetTop;
+
+    win.style.zIndex = Date.now();
+
+    function move(e) {
+      win.style.left = e.clientX - offsetX + "px";
+      win.style.top = e.clientY - offsetY + "px";
+    }
+
+    function stop() {
+      document.removeEventListener("mousemove", move);
+      document.removeEventListener("mouseup", stop);
+    }
+
+    document.addEventListener("mousemove", move);
+    document.addEventListener("mouseup", stop);
+  });
+}
+
+</script>
+
+</body>
+</html>
