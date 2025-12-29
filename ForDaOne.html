@@ -64,7 +64,8 @@ alt="gif"
 style="position: fixed; top: 45%; left: 50%; transform: translateX(-50%); width: 150px;">
 <body>
 
-<button class="btn" onclick="createWindow()">Click me</button>
+<button class="btn" onclick="createWindow(); playSound();">Click me</button>
+<audio id="clickSound" preload="auto"></audio>
 
 <script>
  const messages = [
@@ -162,6 +163,12 @@ function createWindow() {
 
   document.body.appendChild(win);
   makeDraggable(win);
+}
+
+function playSound() {
+  const audio = document.getElementById("clickSound");
+  audio.src = "Assets/clicksound.mp3"; 
+  audio.play();
 }
 
 function makeDraggable(win) {
