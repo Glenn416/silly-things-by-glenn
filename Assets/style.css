@@ -1,0 +1,111 @@
+body  {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #9CC6DB;
+}
+
+.container {
+    padding: 10px;
+    width: 90%;
+    height: 90%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FCF6D9;
+    border-radius: 12px;
+    box-shadow: #71909f 0px 0px 15px 5px;
+}
+
+.introduction h2 {
+    width: 30%;
+    height: 30%;
+    font-family: "Caveat Brush", cursive;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 40px;
+}
+
+.introduction p {
+    width: 75%;
+    font-family: "Caveat Brush", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
+
+.introduction {
+    margin: 5%;
+}
+
+.Contact {
+    font-family: "Caveat Brush", cursive;
+    font-weight: 300;
+    font-style: normal;
+    margin-top:20px;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    z-index: 4;
+}
+
+.Contact h3 {
+    text-align: right;
+}
+.Contact a {
+    text-align: right;
+    text-decoration: none;
+    color: black;
+    font-family: "Caveat Brush", cursive;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.professions {
+    font-family: "Caveat Brush", cursive;
+    font-weight: 300;
+    font-size: 25px;
+}
+
+.Contact a:hover {
+    color: #555555;
+    transition: 0.5s ease;
+}
+
+.imgBackground1 {
+    width:35dvh; 
+    height:50dvh; 
+    background-color:#CF4B00; 
+    border-radius:12px; 
+    margin-top:20px;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    z-index: 4;
+    transition: 0.5s ease;;
+}
+.imgBackground2 {
+    width:35dvh; 
+    height:50dvh; 
+    background-color:#DDBA7D; 
+    border-radius:12px; 
+    margin-top:20px;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    z-index: 3;
+    rotate: -5deg;
+    transition: 1s ease;
+}
+
+.profilePicture:hover {
+    .imgBackground1 {
+        rotate: 5deg;
+    }
+    .imgBackground2 {
+        rotate: 0deg;
+    }
+    transition: 0.5s ease;
+}
