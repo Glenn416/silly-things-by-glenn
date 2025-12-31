@@ -18,7 +18,7 @@
          <p>
                 I’m a university student who’s curious, creative, and always learning new things.<br/>
                 I enjoy exploring tech, design, and games, and I like turning ideas into something useful or fun. <br/>
-                I’m calm, open-minded, and I enjoy improving myself step by step—whether it’s coding, creating, or discovering new interests.<br/>
+                I’m calm, open-minded, and I enjoy improving myself step by step whether it’s coding, creating, or discovering new interests.<br/>
                Nice to meet you~ UwU ✨
          </p>
          <div class="professions">
@@ -35,6 +35,10 @@
             </div>
             <div class="imgBackground2">
             </div>
+            <div class="image">
+                <img src="Assets/1frame.png" id="sticker" style="cursor: pointer;" onclick="toggle(); playSound();">
+                <audio id="sticker-sound" preload="auto" src="Assets/Popcat.mp3" loop></audio>
+            </div>
         </div>
         <div class="Contact">
             <h3>Contact Me</h3>
@@ -44,4 +48,33 @@
             </p>
         </div>
     </div>
+
+
+<script>
+const sprite = document.getElementById("sticker");
+const sound = document.getElementById("sticker-sound");
+const frames = ['Assets/1frame.png','Assets/2frame.png'];
+
+let i = 0;
+let interval = null;
+let playing = false;
+
+sprite.onclick = () => {
+  if (playing) {
+    clearInterval(interval);
+    interval = null;
+    sprite.src = frames[0];
+    sound.pause();
+    sound.currentTime = 0; 
+    playing = false;
+  } else {
+    interval = setInterval(() => {
+      i = (i + 1) % frames.length;
+      sprite.src = frames[i];
+    }, 120);
+    sound.play();
+    playing = true;
+  }
+};
+</script>
 </body>
