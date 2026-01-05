@@ -1,81 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Profile</title>
-    <link href="Assets/style.css" rel="stylesheet" type="text/css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glenn</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="introduction">
-         <h2>Hello!!<br/>
-             I'm Glenn.
-        </h2>
-         <p>
-                I’m a university student who’s curious, creative, and always learning new things.<br/>
-                I enjoy exploring tech, design, and games, and I like turning ideas into something useful or fun. <br/>
-                I’m calm, open-minded, and I enjoy improving myself step by step whether it’s coding, creating, or discovering new interests.<br/>
-               Nice to meet you~ UwU ✨
-         </p>
-         <div class="professions">
-            <h3>What am i good at?</h3>
-            <p>Powerpoint | Presentation | Design | Games</p>
-        </div>
-         <div class="personalProjects">
-            <h3>Silly things i made</h3>
-            <p><a href="https://glenn416.github.io/silly-things-by-glenn/ForDaOne.html"><img src="Assets/ForDaOne.png" alt="ForDaOne" width="100" height="100"></a></p>
-        </div>
-        </div>
-        <div class="profilePicture">
-            <div class="imgBackground1">
-            </div>
-            <div class="imgBackground2">
-            </div>
-            <div class="image">
-                <img src="Assets/1frame.png" id="sticker" style="cursor: pointer;" onclick="toggle(); playSound();">
-                <audio id="sticker-sound" preload="auto" src="Assets/Popcat.mp3" loop></audio>
-            </div>
-        </div>
-        <div class="Contact">
-            <h3>Contact Me</h3>
-            <p> <a href="https://t.me/iyk_glenn">Telegram</a> | 
-                <a href="mailto:hlaingmyintmo30@gmail.com">Email</a> | 
-                <a href="https://www.tiktok.com/@iyk_glenn">Tiktok</a>
-            </p>
-        </div>
+
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Hello! I’m Glenn.</h1>
+      <p>
+        Curious university student who enjoys tech, design, and games.
+        Turning ideas into fun & useful things ✨
+      </p>
+
+      <div class="skills">
+        <span>🎨 Design</span>
+        <span>📊 Presentations</span>
+        <span>🎮 Games</span>
+      </div>
     </div>
 
+    <img src="avatar.png" alt="Avatar" class="avatar">
+  </section>
 
-<script>
-const sprite = document.getElementById("sticker");
-const sound = document.getElementById("sticker-sound");
-const frames = ['Assets/1frame.png','Assets/2frame.png'];
+  <!-- PROJECTS -->
+  <section class="section">
+    <h2>✨ Silly things i made ✨</h2>
 
-let i = 0;
-let interval = null;
-let playing = false;
+    <div class="projects">
+      <div class="project"></div>
+      <div class="project"></div>
+      <div class="project"></div>
+      <div class="project"></div>
+    </div>
+  </section>
 
-sprite.onclick = () => {
-  if (playing) {
-    clearInterval(interval);
-    interval = null;
-    sprite.src = frames[0];
-    sound.pause();
-    sound.currentTime = 0; 
-    playing = false;
-  } else {
-    interval = setInterval(() => {
-      i = (i + 1) % frames.length;
-      sprite.src = frames[i];
-    }, 120);
-    sound.play();
-    playing = true;
-  }
-};
-</script>
+  <!-- CONTACT -->
+  <section class="section">
+    <h2>Contact Me</h2>
+
+    <div class="contact">
+      <a class="telegram">Telegram</a>
+      <a class="email">Email</a>
+      <a class="tiktok">TikTok</a>
+    </div>
+  </section>
+
+</main>
+
 </body>
 </html>
