@@ -1,280 +1,144 @@
-body  {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #9CC6DB;
-    display: flex;
-    overflow-y: auto;
-    transition: 0.5s ease;
-    scroll-behavior: smooth;
+/* RESET */
+* {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  padding: 24px;
+  background: #cfe9f1;
+  font-family: "Comic Sans MS", system-ui, sans-serif;
+}
+
+/* MAIN CARD */
 .container {
-    padding: 10px;
-    width: 90%;
-    height: 90%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #FCF6D9;
-    border-radius: 12px;
-    box-shadow: #71909f 0px 0px 15px 5px;
+  max-width: 900px;
+  margin: auto;
+  background: #fff6dc;
+  padding: 28px;
+  border-radius: 26px;
 }
 
-.introduction h2 {
-    width: 30%;
-    height: 30%;
-    font-family: "Caveat Brush", cursive;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 40px;
+/* HERO */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
 }
 
-.introduction p {
-    width: 75%;
-    font-family: "Caveat Brush", cursive;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 20px;
+.hero-text {
+  text-align: center;
 }
 
-.introduction {
-    margin: 5%;
+.hero h1 {
+  margin-bottom: 8px;
 }
 
-.Contact {
-    font-family: "Caveat Brush", cursive;
-    font-weight: 300;
-    font-style: normal;
-    margin-top:20px;
-    position: absolute;
-    right: 5%;
-    bottom: 5%;
-    z-index: 4;
+.hero p {
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-.Contact h3 {
-    text-align: right;
-}
-.Contact a {
-    text-align: right;
-    text-decoration: none;
-    color: black;
-    font-family: "Caveat Brush", cursive;
-    font-weight: 300;
-    font-style: normal;
+/* AVATAR */
+.avatar {
+  width: 160px;
+  border-radius: 50%;
+  background: #ffd9b3;
+  padding: 8px;
 }
 
-.professions {
-    font-family: "Caveat Brush", cursive;
-    font-weight: 300;
-    font-size: 25px;
+/* SKILLS */
+.skills {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 12px;
 }
 
-.Contact a:hover {
-    color: #8b8b8b;
-    transition: 0.5s ease;
+.skills span {
+  background: #ffd6e0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
 }
 
-.imgBackground1 {
-    width:35dvh; 
-    height:50dvh; 
-    background-color:#CF4B00; 
-    border-radius:12px; 
-    margin-top:20px;
-    position: absolute;
-    right: 5%;
-    top: 5%;
-    z-index: 4;
-    transition: 0.5s ease;;
-}
-.imgBackground2 {
-    width:35dvh; 
-    height:50dvh; 
-    background-color:#DDBA7D; 
-    border-radius:12px; 
-    margin-top:20px;
-    position: absolute;
-    right: 5%;
-    top: 5%;
-    z-index: 3;
-    rotate: -10deg;
-    transition: 1s ease;
+/* SECTIONS */
+.section {
+  margin-top: 32px;
+  text-align: center;
 }
 
-.image img{
-    width: 35dvh; 
-    height: 50dvh; 
-    border-radius:12px; 
-    position: absolute;
-    right: 5%;
-    top: 8%;
-    z-index: 5;
-    object-fit: cover;
-    overflow: visible;
-    transition: 1s ease;
+/* PROJECTS */
+.projects {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
 }
 
-.profilePicture:hover {
-    .imgBackground1 {
-        rotate: 8deg;
-    }
-    .imgBackground2 {
-        rotate: 0deg;
-    }
-    .image img {
-        scale: 1.04;
-    }
-    transition: 0.5s ease;
+.project {
+  height: 90px;
+  background: linear-gradient(135deg, #ffe6f0, #e8e0ff);
+  border-radius: 18px;
 }
 
-.personalProjects {
-    font-family: "Caveat Brush", cursive;
-    font-weight: 300;
-    font-size: 25px;
-}
-.personalProjects img {
-    border-radius: 3%;
-    transition: 0.5s ease;
-    position: relative;
-    bottom: 10%;
-}
-.personalProjects img:hover {
-    transform: scale(1.05);
-    box-shadow: #d1ccb4 0px 6px 15px 0px;
+/* CONTACT */
+.contact {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-@media screen and (max-width: 600px) {
-
-    .container {
-        width: 90%;
-        max-height: 90dvh;
-        padding: 3%;
-    }
-
-    .imgBackground1, .imgBackground2{
-        width: 20dvw; 
-        height: 35dvw;
-        top: 10%;
-    }
-
-    .image img{
-        width: 20dvw; 
-        height: 35dvw; 
-        top: 13%;
-    }
-    
-    .introduction h2 {
-        font-size: 20px;
-        width: 100%;
-        height: auto;
-    }
-
-    .introduction p {
-        width: 60%;
-        font-size: 16px;
-    }
-
-    .professions {
-        font-size: 18px;
-    }
-    .personalProjects {
-        font-size: 18px;
-    }
-
-    .personalProjects img {
-        scale: 0.5;
-        position: absolute;
-        bottom: 0.1%;
-        left: 3%;
-        transition: 0.5s ease;
-    }
+.contact a {
+  padding: 12px;
+  border-radius: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
 }
 
-@media screen and (max-width: 900px) {
-     .container {
-        width: 90%;
-        max-height: 90dvh;
-        padding: 3%;
-    }
+.telegram {
+  background: #cfe7ff;
+}
 
-    .imgBackground1, .imgBackground2{
-        width: 35dvw; 
-        height: 40dvw;
-        top: 10%;
-    }
+.email {
+  background: #ffe2b8;
+}
 
-    .image img{
-        width: 40dvw; 
-        height: 15dvw; 
-        top: 23%;
-    }
-    
-    .introduction h2 {
-        font-size: 20px;
-        width: 100%;
-        height: auto;
-    }
+.tiktok {
+  background: #ffd1dc;
+}
 
-    .introduction p {
-        width: 55%;
-        font-size: 16px;
-    }
+/* DESKTOP LAYOUT */
+@media (min-width: 768px) {
 
-    .professions {
-        font-size: 20px;
-    }
+  .hero {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .personalProjects {
-        font-size: 20px;
-    }
+  .hero-text {
+    max-width: 60%;
+    text-align: left;
+  }
 
-    .personalProjects img {
-        transition: 0.5s ease;
-    }
- }
+  .skills {
+    justify-content: flex-start;
+  }
 
- @media screen and (max-width: 1000px) {
-     .container {
-        width: 90%;
-        max-height: 90dvh;
-        padding: 3%;
-    }
+  .projects {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
-    .imgBackground1, .imgBackground2{
-        width: 35dvw; 
-        height: 40dvw;
-        top: 10%;
-    }
+  .contact {
+    flex-direction: row;
+  }
 
-    .image img{
-        width: 40dvw; 
-        height: 15dvw; 
-        top: 23%;
-    }
-    
-    .introduction h2 {
-        font-size: 20px;
-        width: 100%;
-        height: auto;
-    }
-
-    .introduction p {
-        width: 55%;
-        font-size: 16px;
-    }
-
-    .professions {
-        font-size: 20px;
-    }
-
-    .personalProjects {
-        font-size: 20px;
-    }
-
-    .personalProjects img {
-        transition: 0.5s ease;
-    }
- }
+  .contact a {
+    flex: 1;
+  }
+}
