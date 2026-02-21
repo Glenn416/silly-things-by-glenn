@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Bracket</title>
+    <style>
+        :root {
+            --bg-color: #222222;
+            --match-bg: #444444;
+            --text-color: #e0e0e0;
+            --line-color: #666666;
+            --border-radius: 4px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-bar {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: flex-end;
+            padding-bottom: 10px;
+            color: #ff4444;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .bracket-container {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .bracket-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .round-headers {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            background: #2a2a2a;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            color: #aaa;
+            border-bottom: 1px solid #333;
+        }
+
+        .rounds-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            position: relative;
+        }
+
+        /* Match Styles */
+        .match {
+            display: flex;
+            flex-direction: column;
+            background: var(--match-bg);
+            border-radius: var(--border-radius);
+            width: 100%;
+            margin: 15px 0;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .match-num {
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.7rem;
+            color: #888;
+        }
+
+        .team {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            min-height: 20px;
+        }
+
+        .team:last-child {
+            border-bottom: none;
+        }
+
+        .team-rank {
+            color: #888;
+            font-size: 0.7rem;
+            margin-right: 10px;
+            width: 15px;
+        }
+
+        .italic {
+            font-style: italic;
+            color: #999;
+        }
+
+        /* Connection Lines (Simplification) */
+        .match::after {
+            content: "";
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            width: 20px;
+            height: 2px;
+            background: var(--line-color);
+        }
+
+        .column:last-child .match::after {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header-bar">
+        <span>● LIVE &nbsp; ✢ &nbsp; ⎙ &nbsp; &lt;/&gt;</span>
+    </div>
+
+    <div class="bracket-container">
+        
+        <div class="bracket-section">
+            <div class="round-headers">
+                <div>Round 1</div>
+                <div>Round 2</div>
+                <div>Semifinals</div>
+                <div>Final</div>
+            </div>
+            <div class="rounds-grid">
+                <div class="column">
+                    <div class="match"><span class="match-num">1</span>
+                        <div class="team"><span class="team-rank">1</span> MC</div>
+                        <div class="team"><span class="team-rank">2</span> DOC</div>
+                    </div>
+                    <div class="match"><span class="match-num">2</span>
+                        <div class="team"><span class="team-rank">3</span> PTKY</div>
+                        <div class="team"><span class="team-rank">4</span> PB</div>
+                    </div>
+                    <div class="match"><span class="match-num">3</span>
+                        <div class="team"><span class="team-rank">5</span> Team New</div>
+                        <div class="team"><span class="team-rank">6</span> Nay Myo Aung</div>
+                    </div>
+                    <div class="match"><span class="match-num">4</span>
+                        <div class="team"><span class="team-rank">7</span> SF</div>
+                        <div class="team"><span class="team-rank">8</span> PLPS</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="match"><span class="match-num">7</span>
+                        <div class="team">&nbsp;</div>
+                        <div class="team">&nbsp;</div>
+                    </div>
+                    <div class="match"><span class="match-num">8</span>
+                        <div class="team">&nbsp;</div>
+                        <div class="team">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="match"><span class="match-num">12</span>
+                        <div class="team">&nbsp;</div>
+                        <div class="team">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="match"><span class="match-num">14</span>
+                        <div class="team italic">Winner of Losers Bracket</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bracket-section">
+            <div class="round-headers">
+                <div>Losers Round 1</div>
+                <div>Losers Round 2</div>
+                <div>Losers Round 3</div>
+                <div>Losers Round 4</div>
+            </div>
+            <div class="rounds-grid">
+                <div class="column">
+                    <div class="match"><span class="match-num">5</span>
+                        <div class="team italic">Loser of 1</div>
+                        <div class="team italic">Loser of 2</div>
+                    </div>
+                    <div class="match"><span class="match-num">6</span>
+                        <div class="team italic">Loser of 3</div>
+                        <div class="team italic">Loser of 4</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="match"><span class="match-num">10</span>
+                        <div class="team italic">Loser of 8</div>
+                        <div class="team">&nbsp;</div>
+                    </div>
+                    <div class="match"><span class="match-num">9</span>
+                        <div class="team italic">Loser of 7</div>
+                        <div class="team">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="match"><span class="match-num">11</span>
+                        <div class="team">&nbsp;</div>
+                        <div class="team">&nbsp;</div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="match"><span class="match-num">13</span>
+                        <div class="team italic">Loser of 12</div>
+                        <div class="team">&nbsp;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
