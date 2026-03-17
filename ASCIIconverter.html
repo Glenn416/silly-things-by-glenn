@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precision ASCII Studio</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #050505; color: #fff; text-align: center; padding: 20px; margin: 0; }
+        .control-panel { background: #181818; padding: 15px; border-radius: 12px; width: 480px; margin: 0 auto 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.8); border: 1px solid #333; }
+        
+        .ascii-viewport { 
+            width: 98vw; 
+            height: 75vh; 
+            overflow: auto; 
+            background: #000; 
+            border: 1px solid #222; 
+            margin: 0 auto; 
+            display: flex;
+            justify-content: center;
+        }
+
+        #ascii-render { 
+            font-family: 'Courier New', monospace; 
+            line-height: 0.75; 
+            white-space: pre; 
+            color: #fff; 
+            margin: 0;
+            display: inline-block;
+            letter-spacing: -1px; /* Brings characters closer for a smoother "image" */
+        }
+
+        .section { padding: 10px 0; border-bottom: 1px solid #222; }
+        input[type="range"] { width: 70%; vertical-align: middle; }
+        button { cursor: pointer; background: #0f0; border: none; padding: 6px 12px; font-weight: bold; border-radius: 4px; }
+        input[type="text"] { background: #222; border: 1px solid #444; color: white; padding: 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <div class="control-panel">
+        <div class="section">
+            <input type="file" id="file-input" accept="video/*" style="width: 180px;">
+            <input type="text" id="url-input" placeholder="Video URL..." style="width: 120px;">
+            <button id="load-btn">Load</button>
+        </div>
+
+        <div class="section">
+            <label>Resolution: <span id="res-val">120</span> chars</label><br>
+            <input type="range" id="width-control" min="40" max="600" value="120">
+        </div>
+
+        <div class="section" style="border:none;">
+            <label>Volume: <span id="vol-val">50</span>%</label><br>
+            <input type="range" id="volume-control" min="0" max="100" value="50">
+        </div>
+    </div>
+
+    <div class="ascii-viewport">
+        <pre id="ascii-render">Ready for precision rendering...</pre>
+    </div>
+
+    <video id="video-element" loop playsinline crossorigin="anonymous" style="display:none;"></video>
+    <canvas id="proc-canvas" style="display:none;"></canvas>
+
+    <script>
+        const video = document.getElementById('video-element');
+        const asciiRender = document.getElementById('ascii-render');
+        const widthControl = document.getElementById('width-control');
+        const canvas = document.getElementById('proc-canvas');
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+        // Your custom characters ordered by density
+        const chars = '][|li. '; 
+
+        function processFrame() {
+            if (video.paused || video.ended) return;
+
+            const width = parseInt(widthControl.value);
+            const height = (video.videoHeight / video.videoWidth) * width * 0.48;
+            
+            // Scalable font size logic
+            // Higher width = Smaller font to keep it on screen
+            const fontSize = Math.max(0.5, 1100 / width); 
+            asciiRender.style.fontSize = fontSize + 'px';
+
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(video, 0, 0, width, height);
+
+            const pixels = ctx.getImageData(0, 0, width, height).data;
+            let asciiStr = '';
+
+            for (let i = 0; i < pixels.length; i += 4) {
+                // Luminance calculation
+                const b = (0.2126 * pixels[i] + 0.7152 * pixels[i+1] + 0.0722 * pixels[i+2]);
+                const charIndex = Math.floor((b / 255) * (chars.length - 1));
+                
+                asciiStr += chars[charIndex];
+
+                if (((i / 4) + 1) % width === 0) {
+                    asciiStr += '\n';
+                }
+            }
+
+            asciiRender.textContent = asciiStr;
+            requestAnimationFrame(processFrame);
+        }
+
+        // Controls
+        widthControl.addEventListener('input', () => document.getElementById('res-val').textContent = widthControl.value);
+        document.getElementById('volume-control').addEventListener('input', (e) => {
+            video.volume = e.target.value / 100;
+            document.getElementById('vol-val').textContent = e.target.value;
+        });
+
+        const startVideo = (src) => {
+            video.src = src;
+            video.oncanplay = () => { video.play(); processFrame(); };
+        };
+
+        document.getElementById('file-input').onchange = (e) => startVideo(URL.createObjectURL(e.target.files[0]));
+        document.getElementById('load-btn').onclick = () => startVideo(document.getElementById('url-input').value);
+    </script>
+</body>
+</html>
