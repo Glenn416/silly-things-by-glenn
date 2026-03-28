@@ -70,13 +70,13 @@
         const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
         // Your custom characters ordered by density
-        const chars = '][|li. '; 
+        const chars = '.OC '; 
 
         function processFrame() {
             if (video.paused || video.ended) return;
 
             const width = parseInt(widthControl.value);
-            const height = (video.videoHeight / video.videoWidth) * width * 0.48;
+            const height = (video.videoHeight / video.videoWidth) * width * 0.75;
             
             // Scalable font size logic
             // Higher width = Smaller font to keep it on screen
